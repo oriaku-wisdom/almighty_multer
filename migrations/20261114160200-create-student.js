@@ -28,19 +28,19 @@ module.exports = {
       },
       profileImage: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull:true
       },
       galleryImages: {
         type: Sequelize.JSON,
-        allowNull:false
+        allowNull:true
       },
       passportImage: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull:true
       },
          identityCardImage: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull:true
       },
       createdAt: {
         allowNull: false,

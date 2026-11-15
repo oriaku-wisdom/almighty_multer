@@ -4,7 +4,6 @@ const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, './uploads');
     },
-
     filename: (req, file, callback) => {
         const date = Date.now();
         const randNumber = Math.floor(Math.random() * 1E8);
@@ -28,7 +27,7 @@ const fileFilter = (req, file, callback) => {
 };
 
 const limits = {
-    fileSize: 1024 * 1024 * 2
+    fileSize: 1024 * 1024 * 10
 };
 
 const upload = multer({

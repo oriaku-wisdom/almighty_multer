@@ -1,5 +1,5 @@
 
-const Student = require('../models');
+const{ student }= require('../models');
 const fs = require('fs');
 
 
@@ -24,7 +24,7 @@ exports.createStudent = async (req, res) => {
             galleryImages: []
         };
 
-        const newStudent = await Student.create(data);
+        const newStudent = await student.create(data);
 
         res.status(201).json({
             message: 'Student added successfully',
@@ -41,7 +41,7 @@ exports.createStudent = async (req, res) => {
 
 exports.getAllStudents = async (req, res) => {
     try {
-        const students = await Student.findAll();
+        const students = await student.findAll();
 
         res.status(200).json({
             message: 'Students fetched successfully',
@@ -60,7 +60,7 @@ exports.getOneStudent = async (req, res) => {
     try {
         const id = req.params.id;
 
-        const finder = await Student.findByPk(id);
+        const finder = await student.findByPk(id);
 
         if (!finder) {
             return res.status(404).json({
@@ -85,7 +85,7 @@ exports.updateStudent = async (req, res) => {
     try {
         const id = req.params.id;
 
-        const finder = await Student.findByPk(id);
+        const finder = await student.findByPk(id);
 
         if (!finder) {
             return res.status(404).json({
@@ -139,7 +139,7 @@ exports.uploadGallery = async (req, res) => {
     try {
         const id = req.params.id;
 
-        const finder = await Student.findByPk(id);
+        const finder = await student.findByPk(id);
 
         if (!finder) {
             return res.status(404).json({
@@ -176,7 +176,7 @@ exports.uploadMultipleImages = async (req, res) => {
     try {
         const id = req.params.id;
 
-        const finder = await Student.findByPk(id);
+        const finder = await student.findByPk(id);
 
         if (!finder) {
             return res.status(404).json({
@@ -234,7 +234,7 @@ exports.deleteStudent = async (req, res) => {
     try {
         const id = req.params.id;
 
-        const finder = await Student.findByPk(id);
+        const finder = await student.findByPk(id);
 
         if (!finder) {
             return res.status(404).json({

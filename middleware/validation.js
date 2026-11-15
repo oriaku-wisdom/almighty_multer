@@ -43,40 +43,6 @@ const createStudentSchema = Joi.object({
       'string.empty': 'Department cannot be empty.',
       'string.min': 'Department must be at least 2 characters long.',
     }),
-
-  profileImage: Joi.string()
-    .trim()
-    .required()
-    .messages({
-      'any.required': 'Profile image is required.',
-      'string.empty': 'Profile image cannot be empty.',
-    }),
-
-  galleryImages: Joi.array()
-    .items(Joi.string().trim().min(1))
-    .min(2)
-    .required()
-    .messages({
-      'any.required': 'Gallery images are required.',
-      'array.base': 'Gallery images must be an array of image paths or URLs.',
-      'array.min': 'At least two gallery image is required.',
-    }),
-
-  passportImage: Joi.string()
-    .trim()
-    .required()
-    .messages({
-      'any.required': 'Passport image is required.',
-      'string.empty': 'Passport image cannot be empty.',
-    }),
-
-  identityCardImage: Joi.string()
-    .trim()
-    .required()
-    .messages({
-      'any.required': 'Identity card image is required.',
-      'string.empty': 'Identity card image cannot be empty.',
-    }),
 });
 
 const createStudentValidation = (req, res, next) => {
@@ -86,8 +52,13 @@ const createStudentValidation = (req, res, next) => {
     return res.status(400).json({ message: error.details[0].message });
   }
 
+  if (!req.file) {
+    return res.status(400).json({ message: 'Profileimage is required.' });
+  }
+
   req.body = value;
   return next();
 };
 
 module.exports = { createStudentValidation };
+
